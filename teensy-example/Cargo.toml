@@ -1,0 +1,28 @@
+[package]
+name = "teensy-example"
+version = "0.1.0"
+authors = ["Stephen Fleischman <stephenf@cs.washington.edu>"]
+edition = "2018"
+
+[dependencies]
+
+[dependencies.teensy_lib]
+path = "./../teensy_lib"
+
+
+[[bin]]
+name = "teensy-example"
+test = false
+bench = false
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
+
+[build]
+# Pick ONE of these compilation targets
+# target = "thumbv6m-none-eabi"    # Cortex-M0 and Cortex-M0+
+# target = "thumbv7m-none-eabi"    # Cortex-M3
+target = "thumbv7em-none-eabi"   # Cortex-M4 and Cortex-M7 (no FPU)
+# target = "thumbv7em-none-eabihf" # Cortex-M4F and Cortex-M7F (with FPU)
